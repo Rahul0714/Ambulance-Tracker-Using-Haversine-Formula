@@ -21,11 +21,11 @@ class _DrawMapState extends State<DrawMap> {
            layers: [
               new TileLayerOptions(
                   urlTemplate:
-                      "https://api.mapbox.com/styles/v1/rahbro14/ckk8crurb18mp17nzpxyfy5nq/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmFoYnJvMTQiLCJhIjoiY2trODI0a3V4MGdvMzJvbXN5ZHU3N3NzMyJ9.14tcA5htpCyTcgBQiSEIqA",
+                      "your template",
                   additionalOptions: {
                     'accessToken':
-                        'pk.eyJ1IjoicmFoYnJvMTQiLCJhIjoiY2trODI0a3V4MGdvMzJvbXN5ZHU3N3NzMyJ9.14tcA5htpCyTcgBQiSEIqA',
-                    'id': 'mapbox.satellite'
+                        'your token',
+                    'id': 'your id'
             }),
             MarkerLayerOptions(
               markers:[

@@ -1,53 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:latlong/latlong.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DrawMap extends StatefulWidget {
   final Position currentPosition;
-  DrawMap({this.currentPosition}); 
+  LatLng dPosition;
+  DrawMap({this.currentPosition,this.dPosition}); 
   @override
   _DrawMapState createState() => _DrawMapState();
 }
 
 class _DrawMapState extends State<DrawMap> {
+  Set<Marker> _markers = {};
+  void _onMapCreated(GoogleMapController controller){
+    print("****Current");
+    print(widget.dPosition.latitude);
+    setState(() {
+      _markers.add(
+        Marker(markerId: MarkerId("You"),
+        position:LatLng(widget.currentPosition.latitude,widget.currentPosition.longitude),
+        infoWindow: InfoWindow(title: "You",snippet: "Your current Position")),
+      );     
+       _markers.add(
+         Marker(markerId: MarkerId("Driver"),
+         position:LatLng(widget.dPosition.latitude,widget.dPosition.longitude),
+         infoWindow: InfoWindow(title: "Driver",snippet: "Nearest Driver's current Position")),
+       );
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("MapBox"),),
-      body: FlutterMap(
-        options: MapOptions(
-          center: LatLng(widget.currentPosition.latitude, widget.currentPosition.longitude), minZoom: 17.0),
-           layers: [
-              new TileLayerOptions(
-                  urlTemplate:
-                      "your template",
-                  additionalOptions: {
-                    'accessToken':
-                        'your token',
-                    'id': 'your id'
-            }),
-            MarkerLayerOptions(
-              markers:[
-                Marker(
-                  width: 45.0,
-                  height: 45.0,
-                  point: LatLng(widget.currentPosition.latitude, widget.currentPosition.longitude),
-                  builder: (context)=> Container(
-                    child: IconButton(
-                      icon:Icon(Icons.location_on),
-                      color: Colors.red,
-                      iconSize: 45.0,
-                      onPressed: (){
-                        print("Marker Tapped");
-                      },
-                    ),
-                  ),
-                ),
-              ]
-            ),
-          ]
-      ),
+      appBar: AppBar(title: Text("Google "),),
+       body:GoogleMap(
+         onMapCreated: _onMapCreated,
+         markers: _markers,
+         initialCameraPosition: 
+       CameraPosition(target: LatLng(
+         widget.currentPosition.latitude,widget.currentPosition.longitude),
+         zoom: 15.0
+         ),
+      )
     );
   }
 }

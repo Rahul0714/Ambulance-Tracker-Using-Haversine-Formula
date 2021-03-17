@@ -55,7 +55,6 @@ class _UserPhoneState extends State<DriverPhone> {
                     },
                     child: Text("Next",style: TextStyle(color: Colors.white,fontSize: 19.0),),
                     color: Colors.blue,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                     ),),
         ],),
       )

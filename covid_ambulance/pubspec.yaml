@@ -36,8 +36,17 @@ dependencies:
   location_permissions: ^3.0.0+1
   geocoder: ^0.2.1
   geocoding: ^1.0.5
-  google_maps_flutter: ^1.0.6
+  http: ^0.12.2
+  flutter_polyline_points: ^0.2.4
+  google_maps_flutter:
+  vector_math:
   flutter_map:
+  google_fonts:
+  shimmer:
+  flutter_typeahead:
+  timeago:
+  charts_flutter:
+  location:
 
 dev_dependencies:
   flutter_test:

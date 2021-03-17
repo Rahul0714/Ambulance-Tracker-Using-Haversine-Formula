@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:covid_ambulance/covidTracker/screens/tracker.dart';
 import 'package:covid_ambulance/services/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,7 @@ class DriverHomeScreen extends StatefulWidget {
 }
 
 class _UserHomeScreenState extends State<DriverHomeScreen> { 
+  
 Position _currentPosition;
 final FirebaseAuth auth= FirebaseAuth.instance;
 var _currentAddress;
@@ -29,10 +32,54 @@ void _getLocation() async{
     });
   //Navigator.push(context, MaterialPageRoute(builder: (context)=>DrawMap(currentPosition: position)));
 }
-  @override
+//check this out!!
+Widget _basedOnPastButton(){
+  FirebaseFirestore.instance.collection('DriverLoc').get()
+  .then((querySnapshot){
+    querySnapshot.docs.forEach((result){
+      if(FirebaseAuth.instance.currentUser.uid == result.data()['id']){
+        print("Done");
+        return InkWell(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height/2.25,
+            child: Center(child:Image.asset("images/search.png",
+            width: MediaQuery.of(context).size.width/2,
+            height: MediaQuery.of(context).size.height/2,),),
+            decoration: BoxDecoration(
+              color: Color(0xff031440),
+              border: Border.all(color: Colors.white),
+            ),
+          ),
+          onTap: (){
+            
+          });
+      }
+    });
+  });
+  return InkWell(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height/2.25,
+            child: Center(child:Image.asset("images/placeholder.png",
+            width: MediaQuery.of(context).size.width/2,
+            height: MediaQuery.of(context).size.height/2,),),
+            decoration: BoxDecoration(
+              color: Color(0xff031440),
+              border: Border.all(color: Colors.white),
+            ),
+          ),
+          onTap: (){
+            
+          });
+}
+ @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Container(
+      height:100,
+    child:Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff031440),
         actions: [
           IconButton(icon: Icon(Icons.logout),onPressed: (){
             int _count =0;
@@ -45,26 +92,25 @@ void _getLocation() async{
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 20.0,),
-            SizedBox(width: double.infinity,
-              height: MediaQuery.of(context).size.height/10,
-              child: RaisedButton(
-                onPressed: (){
-                  _getLocation();
-                },
-                child: Text("Grant Location",style: TextStyle(color: Colors.white,fontSize: 19.0),),
-                color: Colors.blue,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                ),
-              ),
-              SizedBox(height: 20.0,),
-              Text(_currentPosition==null?"Latitude:-":_currentPosition.latitude.toString()),
-              Text(_currentPosition==null?"Longitude:-":_currentPosition.longitude.toString()),
-              Text(_currentAddress==null?"-":_currentAddress.first.addressLine.toString()),
-              SizedBox(height: 100.0,),
-              Text("Covid Info TODO//"),
+            _basedOnPastButton(),    
+            InkWell(
+            child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height/2.22,
+            child: Center(child:Image.asset("images/diagram.png",
+            width: MediaQuery.of(context).size.width/2,
+            height: MediaQuery.of(context).size.height/2,),),
+            decoration: BoxDecoration(
+              color: Color(0xff031440),
+              border: Border.all(color: Colors.white),
+            ),
+          ),
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Tracker()));
+          },),
           ],
         ),
+    ),
     );
   }
 }

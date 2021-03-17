@@ -126,7 +126,6 @@ class _UserSignUpState extends State<UserSignUp> {
                     },
                     child: Text("Sign Up",style: TextStyle(color: Colors.white,fontSize: 19.0),),
                     color: Colors.blue,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                     ),),
                     SizedBox(height: 25.0,),
                     Row(
@@ -147,7 +146,6 @@ class _UserSignUpState extends State<UserSignUp> {
                     },
                     child: Text("Login With Phone",style: TextStyle(color: Colors.white,fontSize: 19.0),),
                     color: Colors.blue,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                     ),),
                   ],
                  ), 

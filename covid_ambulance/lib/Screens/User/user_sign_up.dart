@@ -18,6 +18,7 @@ class _UserSignUpState extends State<UserSignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[900],
       body: SingleChildScrollView(
               child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,12 +26,12 @@ class _UserSignUpState extends State<UserSignUp> {
             SizedBox(height: MediaQuery.of(context).size.height/7),
               Padding(
                 padding: const EdgeInsets.only(left:25.0),
-                child: Text("Getting Started",style: TextStyle(fontSize: 35.0,color: Colors.blue[900]),),
+                child: Text("Getting Started",style: TextStyle(fontSize: 35.0,fontWeight: FontWeight.bold,color: Colors.white),),
               ),
               SizedBox(height: 15.0,),
                Padding(
                  padding: const EdgeInsets.only(left:25.0),
-                 child: Text("Create an Account to Continue!",style: TextStyle(fontSize: 17.0,color: Colors.lightBlue),),
+                 child: Text("Create an Account to Continue!",style: TextStyle(fontSize: 17.0,color: Colors.white70),),
                ),
                SizedBox(height: 25.0,),
                Center(
@@ -44,12 +45,10 @@ class _UserSignUpState extends State<UserSignUp> {
                              controller: _emailController,
                              decoration: InputDecoration(
                                 labelText: "E-mail",
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 17),
+                                labelStyle: TextStyle(color: Colors.blue[900],fontSize: 17),
                                 floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10.0)), 
-                                  ),
-                                prefixIcon: Icon(Icons.email),
+                                
+                                prefixIcon: Icon(Icons.email,color: Colors.blue[900],),
                              ),
                            ),
                           ),
@@ -61,13 +60,11 @@ class _UserSignUpState extends State<UserSignUp> {
                            child:TextField(
                              controller: _userNameController,
                              decoration: InputDecoration(
-                                labelText: "Username",
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 17),
+                                labelText: "Phone Numebr",
+                                labelStyle: TextStyle(color: Colors.blue[900],fontSize: 17),
                                 floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10.0)), 
-                                  ),
-                                prefixIcon: Icon(Icons.person),
+                                
+                                prefixIcon: Icon(Icons.phone,color: Colors.blue[900]),
                              ),
                            ),
                           ),
@@ -80,12 +77,10 @@ class _UserSignUpState extends State<UserSignUp> {
                              controller: _passwordController,
                              decoration: InputDecoration(
                                 labelText: "Password",
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 17),
+                                labelStyle: TextStyle(color: Colors.blue[900],fontSize: 17),
                                 floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10.0)), 
-                                  ),
-                                prefixIcon: Icon(Icons.lock),
+                                
+                                prefixIcon: Icon(Icons.lock,color: Colors.blue[900]),
                                 suffixIcon: IconButton(
                                   icon:Icon(_obscureText?Icons.visibility:Icons.visibility_off),
                                   onPressed: (){
@@ -112,7 +107,7 @@ class _UserSignUpState extends State<UserSignUp> {
                           .then((signedUser){
                             userCollection.doc(signedUser.user.uid).set({
                               'id':signedUser.user.uid,
-                              'name':_userNameController.text,
+                              'phone':_userNameController.text,
                               'email':_emailController.text,
                               'password':_passwordController.text,
                             });
@@ -124,17 +119,17 @@ class _UserSignUpState extends State<UserSignUp> {
                         _scaffoldKey.currentState..showSnackBar(snackbar);
                       }
                     },
-                    child: Text("Sign Up",style: TextStyle(color: Colors.white,fontSize: 19.0),),
-                    color: Colors.blue,
+                    child: Text("Sign Up",style: TextStyle(color: Colors.blue[900],fontSize: 19.0),),
+                    color: Colors.white,
                     ),),
                     SizedBox(height: 25.0,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("Have an account already?"),
+                        Text("Have an account already?",style: TextStyle(color: Colors.white,fontSize: 14),),
                         FlatButton(onPressed: (){
                           Navigator.pop(context);
-                        }, child: Text("Sign In"),),
+                        }, child: Text("Sign In",style: TextStyle(color: Colors.white,fontSize: 17),),),
                       ],
                     ),
                     SizedBox(height: 25.0,),
@@ -144,8 +139,8 @@ class _UserSignUpState extends State<UserSignUp> {
                     onPressed: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>UserPhone()));
                     },
-                    child: Text("Login With Phone",style: TextStyle(color: Colors.white,fontSize: 19.0),),
-                    color: Colors.blue,
+                    child: Text("Login With Phone",style: TextStyle(color: Colors.blue[900],fontSize: 19.0),),
+                    color: Colors.white,
                     ),),
                   ],
                  ), 

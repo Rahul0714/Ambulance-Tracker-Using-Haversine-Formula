@@ -37,16 +37,21 @@ dependencies:
   geocoder: ^0.2.1
   geocoding: ^1.0.5
   http: ^0.12.2
-  flutter_polyline_points: ^0.2.4
+  google_map_polyutil: ^1.0.1
+  confetti: ^0.5.5
+  flutter_polyline_points:
   google_maps_flutter:
   vector_math:
   flutter_map:
+  requests:
   google_fonts:
   shimmer:
   flutter_typeahead:
   timeago:
   charts_flutter:
   location:
+  provider: ^4.3.3
+  commons: ^0.7.8+3
 
 dev_dependencies:
   flutter_test:

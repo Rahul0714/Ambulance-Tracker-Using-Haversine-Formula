@@ -55,6 +55,7 @@ class _OtpCheckState extends State<OtpCheck> {
   }@override
   Widget build(BuildContext context) {
     return Scaffold( 
+      backgroundColor: Colors.blue[900],
       body:Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: 
@@ -63,31 +64,31 @@ class _OtpCheckState extends State<OtpCheck> {
             padding: const EdgeInsets.all(15.0),
             child: Column(
               children: [
-                Text('Verify Otp for +91${widget.phone}',style: TextStyle(fontSize: 20.0),),
+                Text('Verify OTP for +91${widget.phone}',style: TextStyle(color: Colors.white,fontSize: 20.0,fontWeight: FontWeight.bold),),
                 SizedBox(height: 35.0,),
                 PinPut(
                   fieldsCount: 6,
-                  textStyle: const TextStyle(fontSize: 25.0, color: Colors.white),
+                  textStyle: const TextStyle(fontSize: 25.0, color: Colors.blue),
                   eachFieldWidth: 40.0,
                   eachFieldHeight: 55.0,
                   focusNode: _pinPutFocusNode,
                   controller: _pinPutController,
                   submittedFieldDecoration: BoxDecoration(
-                    color: const Color.fromRGBO(235, 236, 237, 1),
+                    color: const Color.fromRGBO(255, 255, 255, 1),
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   selectedFieldDecoration: BoxDecoration(
-                    color: const Color.fromRGBO(235, 236, 237, 1),
+                    color: const Color.fromRGBO(255, 255, 255, 1),
                     borderRadius: BorderRadius.circular(5.0),
                   ).copyWith(
                     color: Colors.white,
                     border: Border.all(
                       width: 2,
-                      color: const Color.fromRGBO(160, 215, 220, 1),
+                      color: const Color.fromRGBO(255, 255, 255, 1),
                       ),
                     ),
                   followingFieldDecoration: BoxDecoration(
-                    color: const Color.fromRGBO(235, 236, 237, 1),
+                    color: const Color.fromRGBO(255, 255, 255, 1),
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   pinAnimationType: PinAnimationType.fade,

@@ -14,142 +14,176 @@ class _UserSignUpState extends State<DriverSignUp> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _userNameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-              child: Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: MediaQuery.of(context).size.height/7),
-              Padding(
-                padding: const EdgeInsets.only(left:25.0),
-                child: Text("Getting Started",style: TextStyle(fontSize: 35.0,color: Colors.blue[900]),),
+            SizedBox(height: MediaQuery.of(context).size.height / 7),
+            Padding(
+              padding: const EdgeInsets.only(left: 25.0),
+              child: Text(
+                "Getting Started",
+                style: TextStyle(fontSize: 35.0, color: Colors.blue[900]),
               ),
-              SizedBox(height: 15.0,),
-               Padding(
-                 padding: const EdgeInsets.only(left:25.0),
-                 child: Text("Create an Account to Continue!",style: TextStyle(fontSize: 17.0,color: Colors.lightBlue),),
-               ),
-               SizedBox(height: 25.0,),
-               Center(
-                 child: Column(
-                   children: [
-                     Container(
-                       width: MediaQuery.of(context).size.width/1.1,
-                       child: Card(
-                           child:TextField(
-                             keyboardType: TextInputType.emailAddress,
-                             controller: _emailController,
-                             decoration: InputDecoration(
-                                labelText: "E-mail",
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 17),
-                                floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10.0)), 
-                                  ),
-                                prefixIcon: Icon(Icons.email),
-                             ),
-                           ),
+            ),
+            SizedBox(
+              height: 15.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 25.0),
+              child: Text(
+                "Create an Account to Continue!",
+                style: TextStyle(fontSize: 17.0, color: Colors.lightBlue),
+              ),
+            ),
+            SizedBox(
+              height: 25.0,
+            ),
+            Center(
+              child: Column(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.1,
+                    child: Card(
+                      child: TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          labelText: "E-mail",
+                          labelStyle:
+                              TextStyle(color: Colors.black, fontSize: 17),
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                          prefixIcon: Icon(Icons.email),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.1,
+                    child: Card(
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        controller: _userNameController,
+                        decoration: InputDecoration(
+                          labelText: "Phone Number",
+                          labelStyle:
+                              TextStyle(color: Colors.black, fontSize: 17),
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                          prefixIcon: Icon(Icons.phone),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.1,
+                    child: Card(
+                      child: TextField(
+                        controller: _passwordController,
+                        decoration: InputDecoration(
+                          labelText: "Password",
+                          labelStyle:
+                              TextStyle(color: Colors.black, fontSize: 17),
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                          prefixIcon: Icon(Icons.lock),
+                          suffixIcon: IconButton(
+                            icon: Icon(_obscureText
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
                           ),
                         ),
-                        SizedBox(height: 25.0,),
-                        Container(
-                       width: MediaQuery.of(context).size.width/1.1,
-                       child: Card(
-                           child:TextField(
-                             controller: _userNameController,
-                             decoration: InputDecoration(
-                                labelText: "Username",
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 17),
-                                floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10.0)), 
-                                  ),
-                                prefixIcon: Icon(Icons.person),
-                             ),
-                           ),
-                          ),
-                        ),
-                       SizedBox(height: 25.0,),
-                       Container(
-                         width: MediaQuery.of(context).size.width/1.1,
-                         child: Card(
-                           child: TextField(
-                             controller: _passwordController,
-                             decoration: InputDecoration(
-                                labelText: "Password",
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 17),
-                                floatingLabelBehavior: FloatingLabelBehavior.auto,
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10.0)), 
-                                  ),
-                                prefixIcon: Icon(Icons.lock),
-                                suffixIcon: IconButton(
-                                  icon:Icon(_obscureText?Icons.visibility:Icons.visibility_off),
-                                  onPressed: (){
-                                    setState(() {
-                                      _obscureText = !_obscureText;
-                                    });
-                                  },
-                                ), 
-                             ),
-                             obscureText: _obscureText,
-                           ),
-                         ),
-                       ),
-                   //),
-                   SizedBox(height: 25.0,),
-                   SizedBox(width: MediaQuery.of(context).size.width/1.1,
-                   height: MediaQuery.of(context).size.height/13,
-                   child: RaisedButton(
-                    onPressed: (){
-                      try{
-                        FirebaseAuth.instance.createUserWithEmailAndPassword(
-                          email: _emailController.text, 
-                          password: _passwordController.text)
-                          .then((signedUser){
+                        obscureText: _obscureText,
+                      ),
+                    ),
+                  ),
+                  //),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.1,
+                    height: MediaQuery.of(context).size.height / 13,
+                    child: RaisedButton(
+                      onPressed: () {
+                        try {
+                          FirebaseAuth.instance
+                              .createUserWithEmailAndPassword(
+                                  email: _emailController.text,
+                                  password: _passwordController.text)
+                              .then((signedUser) {
                             driverCollection.doc(signedUser.user.uid).set({
-                              'id':signedUser.user.uid,
-                              'name':_userNameController.text,
-                              'email':_emailController.text,
-                              'password':_passwordController.text,
+                              'id': signedUser.user.uid,
+                              'phone': _userNameController.text,
+                              'email': _emailController.text,
+                              'password': _passwordController.text,
                             });
                           });
                           Navigator.pop(context);
-                      }catch(e){
-                        print(e);
-                        var snackbar = SnackBar(content: Text(e.toString()));
-                        _scaffoldKey.currentState..showSnackBar(snackbar);
-                      }
-                    },
-                    child: Text("Sign Up",style: TextStyle(color: Colors.white,fontSize: 19.0),),
-                    color: Colors.blue,
-                    ),),
-                    SizedBox(height: 25.0,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text("Have an account already?"),
-                        FlatButton(onPressed: (){
-                          Navigator.pop(context);
-                        }, child: Text("Sign In"),),
-                      ],
+                        } catch (e) {
+                          print(e);
+                          var snackbar = SnackBar(content: Text(e.toString()));
+                          _scaffoldKey.currentState..showSnackBar(snackbar);
+                        }
+                      },
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(color: Colors.white, fontSize: 19.0),
+                      ),
+                      color: Colors.blue,
                     ),
-                    SizedBox(height: 25.0,),
-                   SizedBox(width: MediaQuery.of(context).size.width/1.1,
-                   height: MediaQuery.of(context).size.height/13,
-                   child: RaisedButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DriverPhone()));
-                    },
-                    child: Text("Login With Phone",style: TextStyle(color: Colors.white,fontSize: 19.0),),
-                    color: Colors.blue,
-                    ),),
-                  ],
-                 ), 
+                  ),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("Have an account already?"),
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text("Sign In"),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.1,
+                    height: MediaQuery.of(context).size.height / 13,
+                    child: RaisedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DriverPhone()));
+                      },
+                      child: Text(
+                        "Login With Phone",
+                        style: TextStyle(color: Colors.white, fontSize: 19.0),
+                      ),
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
               ),
+            ),
           ],
         ),
       ),

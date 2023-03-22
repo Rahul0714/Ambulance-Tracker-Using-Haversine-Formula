@@ -7,3 +7,6 @@ CollectionReference policeCollection = FirebaseFirestore.instance.collection('Po
 CollectionReference userLocCollection = FirebaseFirestore.instance.collection('UserLoc');
 CollectionReference driverLocCollection = FirebaseFirestore.instance.collection('DriverLoc');
 CollectionReference policeLocCollection = FirebaseFirestore.instance.collection('PoliceLoc');
+
+CollectionReference dpahistory = FirebaseFirestore.instance.collection('DPaHistory');
+CollectionReference pdrivahistory = FirebaseFirestore.instance.collection('PDrivHistory');

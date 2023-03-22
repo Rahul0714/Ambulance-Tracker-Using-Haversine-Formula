@@ -11,6 +11,7 @@ class _UserPhoneState extends State<PolicePhone> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[900],
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -18,12 +19,12 @@ class _UserPhoneState extends State<PolicePhone> {
           SizedBox(height: MediaQuery.of(context).size.height/7),
               Padding(
                 padding: const EdgeInsets.only(left:25.0),
-                child: Text("Let's Sign You In",style: TextStyle(fontSize: 35.0,color: Colors.blue[900]),),
+                child: Text("Let's Sign You In",style: TextStyle(fontSize: 35.0,fontWeight: FontWeight.bold,color: Colors.white),),
               ),
               SizedBox(height: 15.0,),
               Padding(
                 padding: const EdgeInsets.only(left:25.0),
-                child: Text("Welcome back, you’ve been missed!",style: TextStyle(fontSize: 17.0,color: Colors.lightBlue),),
+                child: Text("Welcome!",style: TextStyle(fontSize: 17.0,color: Colors.white70),),
               ),
               SizedBox(height: 35.0,),
               Center(
@@ -35,12 +36,10 @@ class _UserPhoneState extends State<PolicePhone> {
                       controller: _phoneController,
                       decoration: InputDecoration(
                         labelText: "Phone",
-                        labelStyle: TextStyle(color: Colors.black,fontSize: 17),
+                        labelStyle: TextStyle(color: Colors.blue[900],fontSize: 17),
                         floatingLabelBehavior: FloatingLabelBehavior.auto,
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)), 
-                          ),
-                          prefixIcon: Icon(Icons.phone),
+                        
+                          prefixIcon: Icon(Icons.phone,color: Colors.blue[900],),
                       ),
                     ),
                   ),
@@ -53,8 +52,8 @@ class _UserPhoneState extends State<PolicePhone> {
                     onPressed: (){
                       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PoliceOtpCheck(_phoneController.text)));
                     },
-                    child: Text("Next",style: TextStyle(color: Colors.white,fontSize: 19.0),),
-                    color: Colors.blue,
+                    child: Text("Next",style: TextStyle(color: Colors.blue[900],fontSize: 19.0),),
+                    color: Colors.white,
                     ),),
         ],),
       )

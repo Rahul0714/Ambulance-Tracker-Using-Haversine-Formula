@@ -12,22 +12,23 @@ class _IntroPageState extends State<IntroPage> {
   Widget build(BuildContext context) {
     return IntroductionScreen(pages: [
       PageViewModel(
-        title: "Welcome to AppName",
+        decoration: PageDecoration(imageFlex: 3),
+        title: "Welcome to Covid Connect",
         body:"Something",
-        image: CircleAvatar(child: Image.asset("images/doctor_monochromatic.png"),
-        backgroundColor: Color(0xffF39797),),
+        image: CircleAvatar(
+          child: Image.asset("images/doctor_monochromatic.png",height: 350,alignment: Alignment.center,),),
       ),
       PageViewModel(
-        title: "Welcome to AppName",
+        decoration: PageDecoration(imageFlex: 3),
+        title: "Welcome to Covid Connect",
         body:"Something",
-        image: CircleAvatar(child: Image.asset("images/map_monochromatic.png"),
-        backgroundColor: Color(0xffF39797),),
+        image: CircleAvatar(child: Image.asset("images/map_monochromatic.png",height: 260,alignment: Alignment.center,)),
       ),
       PageViewModel(
-        title: "Welcome to AppName",
+        decoration: PageDecoration(imageFlex: 3),
+        title: "Welcome to Covid Connect",
         body:"Something",
-        image: CircleAvatar(child: Image.asset("images/police_monochromatic.png"),
-        backgroundColor: Color(0xffF39797),),
+        image: CircleAvatar(child: Image.asset("images/police_monochromatic.png",height: 350,alignment: Alignment.center,)),
       ),
     ], 
     onDone: (){

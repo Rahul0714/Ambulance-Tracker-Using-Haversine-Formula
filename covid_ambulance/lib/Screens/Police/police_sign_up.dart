@@ -61,13 +61,13 @@ class _UserSignUpState extends State<PoliceSignUp> {
                            child:TextField(
                              controller: _userNameController,
                              decoration: InputDecoration(
-                                labelText: "Username",
+                                labelText: "Phone Number",
                                 labelStyle: TextStyle(color: Colors.black,fontSize: 17),
                                 floatingLabelBehavior: FloatingLabelBehavior.auto,
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(10.0)), 
                                   ),
-                                prefixIcon: Icon(Icons.person),
+                                prefixIcon: Icon(Icons.phone),
                              ),
                            ),
                           ),
@@ -112,7 +112,7 @@ class _UserSignUpState extends State<PoliceSignUp> {
                           .then((signedUser){
                             policeCollection.doc(signedUser.user.uid).set({
                               'id':signedUser.user.uid,
-                              'name':_userNameController.text,
+                              'phone':_userNameController.text,
                               'email':_emailController.text,
                               'password':_passwordController.text,
                             });

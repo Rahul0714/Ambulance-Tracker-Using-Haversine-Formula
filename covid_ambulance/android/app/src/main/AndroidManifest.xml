@@ -13,7 +13,7 @@
         android:label="covid_ambulance"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyCBSNYWjng4rlJ09ZkAotuy-eytVj7FIfc"/>
+               android:value="GOOGLE MAP API"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
